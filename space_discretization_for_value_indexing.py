@@ -49,10 +49,3 @@ class Model:
   def update(self, s, a, G):
     x = self.feature_transformer.transform(s)
     self.Q[x,a] += 1e-2*(G - self.Q[x,a])
-
-  def sample_action(self, s, eps):
-    if np.random.random() < eps:
-      return self.env.action_space.sample()
-    else:
-      p = self.predict(s)
-      return np.argmax(p)
